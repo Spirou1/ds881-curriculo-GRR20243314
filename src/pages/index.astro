@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo Spironelli - Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #09090b;
+            --surface-color: #18181b;
+            --surface-hover: #27272a;
+            --border-color: #3f3f46;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --accent-color: #3b82f6;
+            --radius: 1.5rem;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            width: 95vw;
+        }
+
+        .bento-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover { border-color: #52525b; }
+
+        .profile-card { grid-column: span 1; grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between; }
+        .experience-card { grid-column: span 3; display: flex; flex-direction: column; justify-content: center; }
+        .projects-showcase-card { grid-column: span 3; padding: 0; display: flex; flex-direction: column; }
+
+        /* Profile */
+        .profile-header { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+        .avatar { width: 90px; height: 90px; border-radius: 20%; object-fit: cover; border: 2px solid var(--border-color); }
+        .profile-info h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .profile-info h2 { font-size: 1rem; color: var(--accent-color); font-weight: 500; margin-bottom: 0.75rem;}
+        
+        .status-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(34, 197, 94, 0.1); color: #4ade80; padding: 0.3rem 0.7rem; border-radius: 99px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(34, 197, 94, 0.2); }
+        .status-dot { width: 8px; height: 8px; background-color: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); } 70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); } 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
+
+        .bio-text { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        
+        .tech-stack-title { font-size: 0.8rem; color: var(--text-primary); font-weight: 600; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tag { background-color: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 0.5rem; font-weight: 500; }
+
+        .social-links { display: flex; gap: 0.75rem; }
+        .social-link { color: var(--text-primary); background-color: var(--bg-color); width: 42px; height: 42px; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s ease; border: 1px solid var(--border-color); font-size: 1.1rem; }
+        .social-link:hover { background-color: var(--accent-color); border-color: var(--accent-color); color: #fff; transform: translateY(-3px); }
+
+        /* Experience */
+        .card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); }
+        .section-icon { color: var(--accent-color); }
+        .exp-item { display: flex; flex-direction: column; gap: 0.25rem; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .exp-title { font-size: 1.1rem; font-weight: 600; }
+        .exp-date { font-size: 0.8rem; color: var(--text-secondary); }
+        .exp-company { color: var(--accent-color); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.5rem; }
+        .exp-desc { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+
+        /* Projects Tabs */
+        .project-tabs-header { display: flex; border-bottom: 1px solid var(--border-color); background-color: rgba(0,0,0,0.1); }
+        .tab-btn { background: none; border: none; border-right: 1px solid var(--border-color); color: var(--text-secondary); padding: 1rem 1.5rem; font-family: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 0.5rem; }
+        .tab-btn:hover { background-color: var(--surface-hover); color: var(--text-primary); }
+        .tab-btn.active { background-color: var(--surface-color); color: var(--accent-color); font-weight: 600; position: relative; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background-color: var(--accent-color); }
+
+        .project-content-container { flex-grow: 1; position: relative; }
+        .project-tab-content { display: none; grid-template-columns: 1fr 1fr; height: 100%; animation: fadeIn 0.4s ease; }
+        .project-tab-content.active { display: grid; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- AJUSTE NAS IMAGENS GRANDES --- */
+        .project-media { 
+            border-right: 1px solid var(--border-color); 
+            background-color: var(--surface-hover); /* Fundo sutil */
+            padding: 2rem; /* Margem interna para a imagem não colar nas bordas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-media img { 
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; /* Não corta a imagem */
+            border-radius: 0.75rem; /* Cantos arredondados na imagem */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5); /* Sombra para destacar */
+        }
+        /* ---------------------------------- */
+
+        .project-text-details { padding: 2.5rem; display: flex; flex-direction: column; }
+        .project-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .project-company { color: var(--accent-color); font-size: 1rem; font-weight: 500; margin-bottom: 1.5rem; }
+        .project-description { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1; }
+        .project-tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+        .tech-tag { color: var(--accent-color); background: rgba(59, 130, 246, 0.1); font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 4px; font-weight: 600; }
+        .project-link-btn { align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--accent-color); color: #fff; padding: 0.75rem 1.5rem; border-radius: 0.75rem; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: background-color 0.2s ease; }
+        .project-link-btn:hover { background-color: #2563eb; }
+
+        @media (max-width: 1100px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); max-width: 900px;}
+            .profile-card, .experience-card { grid-column: span 1; }
+            .projects-showcase-card { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .bento-grid { grid-template-columns: 1fr; gap: 1rem;}
+            .profile-card, .experience-card, .projects-showcase-card { grid-column: span 1; }
+            .project-tab-content.active { grid-template-columns: 1fr; }
+            .project-media { border-right: none; border-bottom: 1px solid var(--border-color); height: auto; padding: 1.5rem; }
+            .project-text-details { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+        
+        <!-- Perfil -->
+        <div class="bento-card profile-card">
+            <div>
+                <div class="profile-header">
+                    <img src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?w=400&h=400&fit=crop" alt="Enzo Spironelli" class="avatar">
+                    <div class="profile-info">
+                        <h1>Enzo Spironelli</h1>
+                        <h2>DevOps & Redes</h2>
+                        <div class="status-badge">
+                            <span class="status-dot"></span> PoP-PR / RNP
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="bio-text">
+                    Estudante de Análise e Desenvolvimento de Sistemas na UFPR. Focado em infraestrutura, automação e programação de baixo nível.
+                </p>
+
+                <div class="tech-stack-title">Stack Principal</div>
+                <div class="tech-tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">C</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Assembly x86</span>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:seu@email.com" class="social-link" title="Email"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <!-- Experiência -->
+        <div class="bento-card experience-card">
+            <h2 class="card-title"><i class="fa-solid fa-briefcase section-icon"></i> Experiência Atual</h2>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Estagiário em DevOps e Redes</span>
+                    <span class="exp-date">Jul 2025 - Presente</span>
+                </div>
+                <span class="exp-company">PoP-PR (RNP)</span>
+                <p class="exp-desc">Desenvolvimento de ferramentas de automação, análise de KPIs de segurança e monitoramento de infraestrutura de rede em ambiente de alta disponibilidade.</p>
+            </div>
+        </div>
+
+        <!-- Showcase de Projetos -->
+        <div class="bento-card projects-showcase-card">
+            
+            <div class="project-tabs-header">
+                <button class="tab-btn active" data-target="proj-netinfo">
+                    <i class="fa-solid fa-network-wired"></i> NetInfo Ext
+                </button>
+                <button class="tab-btn" data-target="proj-disk">
+                    <i class="fa-solid fa-hard-drive"></i> Disk Usage
+                </button>
+                <button class="tab-btn" data-target="proj-security">
+                    <i class="fa-solid fa-shield-halved"></i> Security Dash
+                </button>
+            </div>
+
+            <div class="project-content-container">
+                
+                <!-- PROJETO 1 -->
+                <div id="proj-netinfo" class="project-tab-content active">
+                    <div class="project-media">
+                        <img src="https://i.imgur.com/0c9U3zj.png" alt="Demonstração do NetInfo Extension">
+                    </div>
+                    <div class="project-text-details">
+                        <h3 class="project-title">GNOME Shell Extension NetInfo</h3>
+                        <p class="project-company">Projeto Pessoal / Open Source</p>
+                        <p class="project-description">
+                            Extensão nativa para o desktop GNOME que monitora e exibe endereços IP (público/privado), status da VPN (WireGuard) e latência de rede diretamente na barra superior do sistema em tempo real. Essencial para sysadmins.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">JavaScript (GJS)</span>
+                            <span class="tech-tag">GNOME API</span>
+                            <span class="tech-tag">NetworkManager</span>
+                        </div>
+                        <a href="#" target="_blank" class="project-link-btn">Ver no GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <!-- PROJETO 2 -->
+                <div id="proj-disk" class="project-tab-content">
+                    <div class="project-media">
+                        <img src="https://i.imgur.com/f6EMoNJ.gif" alt="Terminal C">
+                    </div>
+                    <div class="project-text-details">
+                        <h3 class="project-title">Disk Usage Analyzer CLI</h3>
+                        <p class="project-company">Projeto Acadêmico / UFPR</p>
+                        <p class="project-description">
+                            Ferramenta de linha de comando de alta performance escrita em C para UNIX. Mapeia diretórios e utiliza algoritmos de visualização (squarified treemap) via terminal (ncurses) para identificar o consumo de disco.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">C</span>
+                            <span class="tech-tag">POSIX</span>
+                            <span class="tech-tag">ncurses</span>
+                        </div>
+                        <a href="#" target="_blank" class="project-link-btn">Ver Repositório <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <!-- PROJETO 3 -->
+                <div id="proj-security" class="project-tab-content">
+                    <div class="project-media">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Dashboard de Segurança">
+                    </div>
+                    <div class="project-text-details">
+                        <h3 class="project-title">Network Security Dashboard</h3>
+                        <p class="project-company">PoP-PR (RNP)</p>
+                        <p class="project-description">
+                            Dashboard interativo utilizando Python e Streamlit para visualização analítica de logs de firewall e ferramentas de IDS. Permite identificar anomalias, picos de tráfego e tentativas de ataque através de gráficos dinâmicos.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Plotly</span>
+                        </div>
+                        <a href="#" target="_blank" class="project-link-btn">Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.project-tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                btn.classList.add('active');
+
+                const targetId = btn.getAttribute('data-target');
+                if (targetId) {
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

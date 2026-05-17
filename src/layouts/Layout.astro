@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Meu Portfólio Profissional</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--primary: #2563eb;
+		--primary-dark: #1d4ed8;
+		--bg: #ffffff;
+		--text: #1f2937;
+		--text-muted: #6b7280;
+		--border: #e5e7eb;
+		--max-width: 900px;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--bg: #0f172a;
+			--text: #f3f4f6;
+			--text-muted: #9ca3af;
+			--border: #334155;
+		}
+	}
+
+	html {
+		font-family: 'Inter', system-ui, sans-serif;
+		background-color: var(--bg);
+		color: var(--text);
+		scroll-behavior: smooth;
+	}
+
+	body {
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	h1, h2, h3 {
+		color: var(--text);
+		margin-top: 0;
+	}
+
+	section {
+		padding: 4rem 1.5rem;
+		max-width: var(--max-width);
+		margin: 0 auto;
+	}
+
+	a {
+		color: var(--primary);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	a:hover {
+		color: var(--primary-dark);
+	}
+
+	.container {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+</style>
