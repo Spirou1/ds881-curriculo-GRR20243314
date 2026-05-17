@@ -1,46 +1,28 @@
-# Astro Starter Kit: Basics
+# Projeto Currículo Online DS881
 
-```sh
-npm create astro@latest -- --template basics
-```
+Este repositório contém o código-fonte de um currículo online, desenvolvido como parte da disciplina DS881.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Instruções para rodar o projeto
 
-## 🚀 Project Structure
+O projeto utiliza Docker para facilitar a execução do ambiente de desenvolvimento.
 
-Inside of your Astro project, you'll see the following folders and files:
+1. Clone o repositório.
+2. No terminal, dentro da pasta do projeto, execute:
+   docker-compose up
+3. Acesse o site em seu navegador através do endereço:
+   http://localhost:8080
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Link do site
 
-## 🧞 Commands
+O projeto está disponível em: https://Spirou1.github.io/ds881-curriculo-GRR20243314
 
-All commands are run from the root of the project, from a terminal:
+## Evidências
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Configuração de Branch Protection
 
-## 👀 Want to learn more?
+![Branch Protection](https://i.imgur.com/6PapiRr.png)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Print do Site
+
+![Site](https://i.imgur.com/n2PDuDc.png)
